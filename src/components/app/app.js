@@ -1,10 +1,14 @@
 import React from 'react';
 
+import CardDetails from '../card-details';
+
 import './app.css';
 
 const App = () => {
   return (
-    <h1>Testing!</h1>
+    <div className="vocabulary-iterator-app">
+      <CardDetails />
+    </div>
   );
 };
 
