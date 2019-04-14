@@ -1,17 +1,14 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 
+import VocabularyApiService from '../../services/vocabulary-api-service';
+
 import './deck-list.css';
 
-const items = [
-  {id: 1, name: 'English Common Idioms', dueCards: 100, newCards: 20},
-  {id: 2, name: 'English Everyday Idioms', dueCards: 0, newCards: 0},
-  {id: 3, name: 'English Introductory Phrases', dueCards: 0, newCards: 20},
-  {id: 4, name: 'English Vocabulary Spoken Collocations', dueCards: 42, newCards: 13},
-];
+const service = new VocabularyApiService();
 
 const DeckList = ({history}) => {
-  const decks = items.map(({id, name, dueCards, newCards}) => {
+  const decks = service.getDecks().map(({id, name, dueCards, newCards}) => {
     return (
       <tr key={id} className="table-light" onClick={() => history.push(`${id}`)}>
         <th scope="row">{name}</th>

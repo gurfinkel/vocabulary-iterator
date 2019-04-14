@@ -18,7 +18,10 @@ const App = () => {
           const {id} = match.params;
           return <DeckDetails itemId={id} />
         }}/>
-        <Route path='/card' component={CardDetails} />
+        <Route path='/cards/:id' render={({match}) => {
+          const {id} = match.params;
+          return <CardDetails itemId={id} />
+        }} />
       </div>
     </Router>
   );
