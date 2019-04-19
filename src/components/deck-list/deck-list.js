@@ -1,15 +1,17 @@
 import React from 'react';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+
+import { withVocabularyApiService } from '../hoc-helpers';
 
 import './deck-list.css';
 
-const DeckList = ({getData, history}) => {
-  const decks = getData().map(({id, name, dueCards, newCards}) => {
+const DeckList = ({ service, history }) => {
+  const decks = service.getDecks().map(({id, name, dueCards, newCards}) => {
     return (
-      <tr key={id} className="table-light" onClick={() => history.push(`${id}`)}>
-        <th scope="row">{name}</th>
-        <td>{dueCards}</td>
-        <td>{newCards}</td>
+      <tr key={ id } className="table-light" onClick={() => history.push(`${ id }`)}>
+        <th scope="row">{ name }</th>
+        <td>{ dueCards }</td>
+        <td>{ newCards }</td>
       </tr>
     );
   });
@@ -25,11 +27,11 @@ const DeckList = ({getData, history}) => {
           </tr>
         </thead>
         <tbody>
-          {decks}
+          { decks }
         </tbody>
       </table>
     </div>
   );
 };
 
-export default withRouter(DeckList);
+export default withVocabularyApiService(withRouter(DeckList));
