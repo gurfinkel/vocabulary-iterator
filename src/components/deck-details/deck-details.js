@@ -1,12 +1,10 @@
 import React from 'react';
 
-import VocabularyApiService from '../../services/vocabulary-api-service';
+import { withVocabularyApiService } from '../hoc-helpers';
 
 import './deck-details.css';
 
-const service = new VocabularyApiService();
-
-const DeckDetails = ({itemId}) => {
+const DeckDetails = ({service, itemId}) => {
   const {name, dueCards, newCards, learningCards} = service.getDeck(parseInt(itemId));
   return (
     <div className='deck-details'>
@@ -21,4 +19,4 @@ const DeckDetails = ({itemId}) => {
   );
 };
 
-export default DeckDetails;
+export default withVocabularyApiService(DeckDetails);
